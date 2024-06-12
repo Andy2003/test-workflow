@@ -1,0 +1,23 @@
+name: Manual Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      secret_input:
+        description: 'Secret input'
+        required: true
+
+jobs:
+  run-manual:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Access secret input
+        run: echo "Secret input: ${{ secrets.SECRET_INPUT }}"
+
+      - name: Run a script with secret input
+        run: |
+          echo "Running script with secret input ${{ secrets.SECRET_INPUT }}"
+          ./your_script.sh ${{ secrets.SECRET_INPUT }}
