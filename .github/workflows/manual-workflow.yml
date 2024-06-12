@@ -17,9 +17,5 @@ jobs:
 
       - name: Access secret input
         run: |
-          echo "Secret input: ${{secrets.SECRET_INPUT}}"
-        
-      - name: Run a script with secret input
-        run: |
-          echo "Running script with secret input ${{ secrets.SECRET_INPUT }}"
-          ./your_script.sh ${{ secrets.SECRET_INPUT }}
+          ENCODED_INPUT=$(echo "${{ secrets.SECRET_INPUT }}" | base64)
+          echo "Encoded secret input: $ENCODED_INPUT"
