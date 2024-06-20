@@ -15,7 +15,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Access secret input
-        run: echo "${{ env.GPG_PRIVATE_KEY }}" | gpg --import
-        env:
-          GPG_PRIVATE_KEY: ${{ inputs.gpg_private_key }}
+      - name: test
+        run: |
+          echo "${{ inputs.gpg_private_key }}" > tmpkey
+          gpg --batch --yes --quiet --import tmpkey 
+          rm tmpkey
