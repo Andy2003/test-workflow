@@ -16,5 +16,5 @@ jobs:
         uses: actions/checkout@v2
 
       - name: test
-        run:  echo "${{ inputs.gpg_private_key }}" | gpg --import
+        run:  echo -e "-----BEGIN PGP PRIVATE KEY BLOCK-----\n${{ inputs.gpg_private_key }}\n-----END PGP PRIVATE KEY BLOCK-----" | gpg --import
         shell: bash
