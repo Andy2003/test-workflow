@@ -3,13 +3,10 @@ name: Manual Workflow
 on:
   workflow_dispatch:
     inputs:
-      bar:
-        description: 'Bar'
+      gpg_private_key:
+        description: 'gpg private key'
         required: true
         type: string
-    secrets:
-      bar:
-        required: true
 
 jobs:
   run-manual:
@@ -19,8 +16,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Access secret input
-        run: |
-          ENCODED_INPUT=$(echo "${{ inputs.bar }}" | base64)
-          echo "Encoded secret input: $ENCODED_INPUT"
-          ENCODED_INPUT=$(echo "${{ inputs.BAR }}" | base64)
-          echo "Encoded secret input: $ENCODED_INPUT"
+        run: echo "${{ secrets.gpg_private_key }}" | gpg --import
+        env:
+          GPG_PRIVATE_KEY: ${{ inputs.gpg_private_key }}
