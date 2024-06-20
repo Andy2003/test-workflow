@@ -16,7 +16,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: test
-        run: |
-          echo "${{ inputs.gpg_private_key }}" > tmpkey
-          gpg --batch --yes --quiet --import tmpkey 
-          rm tmpkey
+        run:  echo "${{ inputs.gpg_private_key }}" | gpg --import
