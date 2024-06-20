@@ -25,5 +25,5 @@ jobs:
           echo "::add-mask::$GPG_PASSWORD"        
           echo -e "-----BEGIN PGP PRIVATE KEY BLOCK-----\n${{ env.GPG_PRIVATE_KEY }}\n-----END PGP PRIVATE KEY BLOCK-----" | gpg --import --batch --passphrase ${{ env.GPG_PASSWORD }}
         env:
-          GPG_PRIVATE_KEY: ${{ input.gpg_private_key }}
-          GPG_PASSWORD: ${{ input.gpg_password }}
+          GPG_PRIVATE_KEY: ${{ inputs.gpg_private_key }}
+          GPG_PASSWORD: ${{ inputs.gpg_password }}
