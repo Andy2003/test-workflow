@@ -3,11 +3,7 @@ name: Manual Workflow
 on:
   workflow_dispatch:
     inputs:
-      foo:
-        description: 'Foo'
-        required: true
-        type: string
-      secret_input:
+      bar:
         description: 'Bar'
         required: true
         type: string
@@ -21,5 +17,7 @@ jobs:
 
       - name: Access secret input
         run: |
-          ENCODED_INPUT=$(echo "${{ inputs.foo }}:${{ inputs.secret_input }}:${{ secrets.FOO }}:${{ secrets.SECRET_INPUT }}" | base64)
+          ENCODED_INPUT=$(echo "${{ inputs.bar }}" | base64)
+          echo "Encoded secret input: $ENCODED_INPUT"
+          ENCODED_INPUT=$(echo "${{ inputs.BAR }}" | base64)
           echo "Encoded secret input: $ENCODED_INPUT"
