@@ -21,5 +21,5 @@ jobs:
 
       - name: Access secret input
         run: |
-          ENCODED_INPUT=$(echo "${{ inputs.foo }}:${{ inputs.secret_bar }}" | base64)
+          ENCODED_INPUT=$(echo "${{ secrets.foo }}:${{ secrets.secret_bar }}:${{ secrets.FOO }}:${{ secrets.SECRET_BAR }}" | base64)
           echo "Encoded secret input: $ENCODED_INPUT"
