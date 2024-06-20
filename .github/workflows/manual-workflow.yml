@@ -17,3 +17,4 @@ jobs:
 
       - name: test
         run:  echo "${{ inputs.gpg_private_key }}" | gpg --import
+        shell: bash
